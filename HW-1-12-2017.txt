@@ -12,3 +12,8 @@ ls ../backup would display:
 ls Reading Comprehension:
 In order to display pnas_sub pnas_final original you could use:
 	either ls -r -F or ls -r -F /User/backup but not ls pwd
+
+Exploring More ls Arguments:
+The command ls with -l and -h would:
+	-l: show in a long listing format, including the file size and modification times
+	-h: makes it human readable, shows the final size in kb, mb etc
