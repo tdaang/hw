@@ -9,3 +9,6 @@ Relative Path resolution:
 ls ../backup would display:
 	original pnas_final pnas_sub
 
+ls Reading Comprehension:
+In order to display pnas_sub pnas_final original you could use:
+	either ls -r -F or ls -r -F /User/backup but not ls pwd
