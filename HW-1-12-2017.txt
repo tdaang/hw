@@ -4,3 +4,8 @@ Amanda should be able to use the following to navigate to her home directory (Us
 	cd ~/data/..
 	cd
 	cd ..
+
+Relative Path resolution:
+ls ../backup would display:
+	original pnas_final pnas_sub
+
