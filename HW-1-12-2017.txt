@@ -1,0 +1,6 @@
+Absolute vs relative paths:
+Amanda should be able to use the following to navigate to her home directory (Users/amanda/data to Users/amanda):
+	cd ~
+	cd ~/data/..
+	cd
+	cd ..
