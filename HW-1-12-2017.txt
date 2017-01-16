@@ -17,3 +17,7 @@ Exploring More ls Arguments:
 The command ls with -l and -h would:
 	-l: show in a long listing format, including the file size and modification times
 	-h: makes it human readable, shows the final size in kb, mb etc
+
+Listing Recursively and by Time:
+The command ls -R -t would:
+	list the directories alphabetically, but within each directory, the files and directories would be listed by the time of last change
