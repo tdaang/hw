@@ -27,3 +27,8 @@ There are 28 unique families
   558  cd ../
   559  grep -r "Gorilla" data/
   560  history 14 | less >> ~/Desktop/eeb-177/hw/week-2-hw-eeb-174.txt
+
+553K
+16 contigs
+43 unique isogroups
+contig 00302 with 3330 numreads
