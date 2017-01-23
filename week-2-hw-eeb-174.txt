@@ -31,4 +31,7 @@ There are 28 unique families
 553K
 16 contigs
 43 unique isogroups
-contig 00302 with 3330 numreads
+contig 00302 with 3330 numreads  597 
+ 
+597 for copymove in *.txt; do echo $copymove edited-$copymove; cp $copymove ~/Desktop/eeb-177/CSB/unix/sandbox/temp/edited-$copymove; done
+598  history 2 | less >> ~/Desktop/eeb-177/hw/week-2-hw-eeb-174.txt
