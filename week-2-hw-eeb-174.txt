@@ -1,1 +1,10 @@
 There are 28 unique families
+
+  528  tail -n +2 ../data/Pacifici2013_data.csv
+  529  tail -n +2 ../data/Pacifici2013_data.csv | cut -d ";" -f 2-6
+  530  tail -n +2 ../data/Pacifici2013_data.csv | cut -d ";" -f 2-6 | tr -s ";" ' '
+  531  tail -n +2 ../data/Pacifici2013_data.csv | cut -d ";" -f 2-6 | tr -s ";" ' ' | sort -r -n -k 6
+  532  tail -n +2 ../data/Pacifici2013_data.csv | cut -d ";" -f 2-6 | tr -s ";" ' ' | sort -r -n -k 6 > bodyM.csv
+  533  history 6 | less
+  534  history 6 | less >> ~/Desktop/eeb-177/hw/week-2-hw-eeb-174.txt
+  535  history 8 | less >> ~/Desktop/eeb-177/hw/week-2-hw-eeb-174.txt
