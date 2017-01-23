@@ -8,3 +8,6 @@ There are 28 unique families
   533  history 6 | less
   534  history 6 | less >> ~/Desktop/eeb-177/hw/week-2-hw-eeb-174.txt
   535  history 8 | less >> ~/Desktop/eeb-177/hw/week-2-hw-eeb-174.txt
+
+10th largest Cetartiodactyla Balaenidae Eubalaena Eubalaena glacialis 22999999.91
+10th smallest Chiroptera Vespertilionidae Pipistrellus Pipistrellus nanulus 2.51
