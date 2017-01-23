@@ -11,3 +11,19 @@ There are 28 unique families
 
 10th largest Cetartiodactyla Balaenidae Eubalaena Eubalaena glacialis 22999999.91
 10th smallest Chiroptera Vespertilionidae Pipistrellus Pipistrellus nanulus 2.51
+
+  546 wc -l bodyM.csv
+  547  grep Vombatidae bodyM.csv
+  548  grep -c Vombatidae bodyM.csv
+  549  grep Bos bodyM.csv
+  550  grep -w Bos bodyM.csv
+  551  grep -i Bos bodyM.csv
+  552  grep -B 2 -A 2 "Gorilla gorilla" bodyM.csv
+  553  grep -n "Gorilla gorilla" bodyM.csv
+  554  grep Gorilla bodyM.csv | grep -v gorilla
+  555  grep -w "Gorilla\|Pan" bodyM.csv
+  556  cd ~/CSB/unix
+  557  cd ~/CSB/unix/
+  558  cd ../
+  559  grep -r "Gorilla" data/
+  560  history 14 | less >> ~/Desktop/eeb-177/hw/week-2-hw-eeb-174.txt
