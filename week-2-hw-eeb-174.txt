@@ -1,4 +1,6 @@
-There are 28 unique families
+First five species: Rodentia, Rodentia, Rodentia, Macroscelidea, Rodentia
+
+There are 152 unique families
 
   528  tail -n +2 ../data/Pacifici2013_data.csv
   529  tail -n +2 ../data/Pacifici2013_data.csv | cut -d ";" -f 2-6
@@ -31,7 +33,14 @@ There are 28 unique families
 553K
 16 contigs
 43 unique isogroups
-contig 00302 with 3330 numreads  597 
+contig 00302 with 3330 numreads 
  
 597 for copymove in *.txt; do echo $copymove edited-$copymove; cp $copymove ~/Desktop/eeb-177/CSB/unix/sandbox/temp/edited-$copymove; done
 598  history 2 | less >> ~/Desktop/eeb-177/hw/week-2-hw-eeb-174.txt
+
+using grep: grep -w "of" haiku.txt
+find Pipeline Reading Comprehension: gives us a list of the  data files in or below the directory, count lines in files, and sort numerically
+Matching and Subtracting: commands 2 and 3
+Tracking a Species: 7, 5, 4, 3, 1, 2, 6
+Little Women: for file in littlewomen.txt; do grep -w 'Jo|Meg|Beth|Amy' | wc  -1; done
+Finding Files with Different Properties: find ./ -type f -mtime -1 -user ahmed
