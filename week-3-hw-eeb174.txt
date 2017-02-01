@@ -1,0 +1,44 @@
+Question#1
+1.11.2(1)
+individual 3 has been sampled 61 times
+individual 37 has been sampled 5 times
+
+1.11.2(2)
+#! /bin/bash
+cut -f 1 $1 | grep -c -w $2
+#the first half of code looks at the first column of the file that we're looking in and the second half counts the number of occurrences that the individual appears in the file
+
+1.11.2(3)
+# /bin/bash
+list_ind=$(tail -n +2 $1 | tr -s "\t" "," | cut -f 1 $1 | uniq)
+for ID in $list_ind
+do
+	echo "Individual $ID was sampled this many times: "
+	tail -n +2 $1 | tr -s "\t" "," |grep -c $ID $1
+done
+#we are looking for individuals, as represented by list_ind. this script looks into the file that we provide it and the specific column that we give it, giving us a count for the number of times the individual is sampled
+
+
+Question#2
+1.11.3(1)
+#! /bin/bash
+echo "Name of File: $1"
+rows=$(tail -n +1 $1 | wc -l)
+echo "Number of Rows: $rows"
+columns=$(head -n +1 $1 | tr " " "\n" | wc -w)
+echo "Number of Columns: $columns"
+#this counts the number of rows and columns, ignoring the white space
+
+1.11.3(2)
+#! /bin/bash
+for feedfile in *.txt
+	do 
+		rows=$(tail -n +1 $feedfile | wc -l)
+		columns=$(head -n +1 $feedfile | tr " " "\n" | wc -w)
+		echo "$feedfile $rows $columns"
+done
+#plan is to look in the saavedra folder and for each file within the folder, want to take count the number of rows and columns in the text file and then return the file name, number of rows, and number of columns. already in the saavedra folder, so just takes each txt file and counts the number of rows and columns in each one, outputting the counts. 	
+
+1.11.3(3)
+n58.txt has the most rows (678)
+n56.txt has the most columns (207)
