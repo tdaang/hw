@@ -1,0 +1,484 @@
+---
+title: "week-8-hw-eeb174.Rmd"
+output: html_document
+---
+
+# 6
+
+```{r}
+library(ggplot2)
+
+
+canids <- read.csv("/home/eeb177-student/Desktop/eeb-177/hw/canids_summary.csv", header =F, as.is = T)
+
+names(canids) <- c("genus", "species", "minage", "maxage")
+head(canids)
+```
+
+```{r}
+canid_occ <- ggplot(canids, aes( species, ymin = maxage, ymax=minage, colour = genus))
+canid_occ <- canid_occ + geom_linerange()
+canid_occ <- canid_occ + theme(legend.position="none") #gets rid of legend
+canid_occ <- canid_occ + coord_flip() #flips the coordinats horizontally
+canid_occ <- canid_occ +  theme(axis.text.y = element_text(size=3)) # resizes text
+canid_occ <- canid_occ + theme(axis.ticks.y=element_blank()) # gets rid of tick marks on y axis
+canid_occ <- canid_occ + scale_y_continuous(limits=c(0, 40), expand = c(0, 0), breaks=c(0, 10, 20, 30, 40)) # gets rid of space on right and left of the graph to make the graph itself larger
+canid_occ <- canid_occ + labs(title = "Canid Fossil Occurrences", x = "Species", y = "Ma ago") + theme(plot.title = element_text(hjust = 0.5, size=22, face = "bold"), axis.title =element_text(size=20))  # adds titles and labels to the graph
+canid_occ
+
+```
+
+```{r}
+ggsave(filename = "canid_fossil_occurrences.pdf", plot = canid_occ)
+
+```
+# 7
+
+What taxonomic group is being displayed?
+```{r}
+print("Canids")
+```
+How many unique fossil species are contained within it?
+```{r}
+cat("number of unique species: ", nrow(canids))
+
+```
+How many unique fossil genera?
+```{r}
+genera <- unique(canids$genus)
+cat("number of unique fossil genera: ", length(genera))
+```
+What species has the longest duration?
+```{r}
+canids$longest_duration <- canids$maxage - canids$minage
+
+taxa_longest_duration<- which.max(canids$longest_duration) 
+
+cat(canids[taxa_longest_duration,2], canids[taxa_longest_duration,5], "million years ago")
+```
+
+# 6. mustelidae
+```{r}
+mustelidae <- read.csv("//home/eeb177-student/Desktop/eeb-177/hw/mustelidae_summary.csv", header =F, as.is = T)
+
+names(mustelidae) <- c("genus", "species", "minage", "maxage")
+head(mustelidae)
+```
+```{r}
+mustelidae_occ <- ggplot(mustelidae, aes( species, ymin = maxage, ymax=minage, colour = genus))
+mustelidae_occ <- mustelidae_occ + geom_linerange()
+mustelidae_occ <- mustelidae_occ + theme(legend.position="none") #gets rid of legend
+mustelidae_occ <- mustelidae_occ + coord_flip() #flips the coordinats horizontally
+mustelidae_occ <- mustelidae_occ +  theme(axis.text.y = element_text(size=3)) # resizes text
+mustelidae_occ <- mustelidae_occ + theme(axis.ticks.y=element_blank()) # gets rid of tick marks on y axis
+mustelidae_occ <- mustelidae_occ + scale_y_continuous(limits=c(0, 30), expand = c(0, 0), breaks=c(0, 5, 10, 15, 20, 25, 30)) # gets rid of space on right and left of the graph to make the graph itself larger
+mustelidae_occ <- mustelidae_occ + labs(title = "Canid Fossil Occurrences", x = "Species", y = "Ma ago") + theme(plot.title = element_text(hjust = 0.5, size=22, face = "bold"), axis.title =element_text(size=20))  # adds titles and labels to the graph
+mustelidae_occ
+```
+
+```{r}
+ggsave(filename = "mustelidae_fossil_occurrences.pdf", plot = mustelidae_occ)
+```
+
+# 7. mustelidae
+
+1. What taxonomic group is being displayed?
+```{r}
+print("Mustelidae")
+```
+
+2. How many unique fossil species are contained within it?
+```{r}
+cat("number of unique species: ", nrow(mustelidae))
+```
+
+3. How many unique fossil genera?
+```{r}
+genera <- unique(mustelidae$genus)
+cat("number of unique fossil genera: ", length(genera))
+```
+
+4. Which species has the longest duration?
+```{r}
+mustelidae$longest_duration <- mustelidae$maxage - mustelidae$minage
+
+must_longest_duration<- which.max(mustelidae$longest_duration) 
+
+cat(mustelidae[must_longest_duration,2], canids[must_longest_duration,5], "million years ago")
+```
+# Part 2: Data Frames
+
+```{r}
+cats <- read.csv(file = "/home/eeb177-student/Desktop/eeb-177/class-assignments/data/feline-data.csv")
+age <- c(4,5,8)
+cats <- cbind(cats, age)
+```
+
+```{r}
+levels(cats$coat)
+levels(cats$coat) <- c(levels(cats$coat), 'tortoiseshell')
+cats <- rbind(cats, list("tortoiseshell", 3.3, TRUE, 9))
+cats
+
+```
+```{r}
+str(cats)
+
+```
+```{r}
+cats$coat <- as.character(cats$coat)
+str(cats)
+
+```
+```{r}
+cats[-4,]
+```
+```{r}
+cats <- na.omit(cats)
+
+```
+```{r}
+cats <- rbind(cats, cats)
+cats
+rownames(cats) <- NULL
+cats
+```
+# Challenge 1
+
+```{r}
+df <- data.frame(first = c('Grace'),
+                 last = c('Hopper'),
+                 lucky_number = c(0),
+                 stringsAsFactors = FALSE)
+df <- rbind(df, list('Marie', 'Curie', 238) )
+df <- cbind(df, coffeetime = c(TRUE,TRUE))
+df
+```
+```{r}
+gapminder <- read.csv("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv")
+```
+```{r}
+str(gapminder)
+```
+```{r}
+typeof(gapminder$year)
+```
+```{r}
+typeof(gapminder$country)
+```
+```{r}
+str(gapminder$country)
+```
+```{r}
+length(gapminder)
+```
+```{r}
+typeof(gapminder)
+```
+```{r}
+dim(gapminder)
+```
+```{r}
+colnames(gapminder)
+
+```
+```{r}
+head(gapminder)
+```
+
+# Challenge 2
+```{r}
+gapminder <- read.csv("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv")
+#source(file = "~/scripts/load-gapminder.R")
+```
+# Challenge 3
+gapminder = data frame. columns with 1704 rows, 6 columns. 
+Country and continent = factors
+Year = integer vector
+Pop = numeric vector
+lifeExp = numeric vector
+gdpPercap  = numeric vector
+
+#2. Subsetting Data
+
+```{r}
+x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
+names(x) <- c('a', 'b', 'c', 'd', 'e')
+x
+```
+```{r}
+x[1]
+x[4]
+x[c(1,3)]
+x[1:4]
+```
+```{r}
+x[c(1,1,3)]
+x[6]
+x[0]
+```
+```{r}
+x[-2]
+x[c(-1, -5)]
+```
+```{r}
+x <- x[-4]
+x
+```
+# Challenge 1
+```{r}
+x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
+names(x) <- c('a', 'b', 'c', 'd', 'e')
+print(x)
+
+x[2:4]
+x[-c(1,5)]
+x[c("b", "c", "d")]
+x[c(2,3,4)]
+```
+```{r}
+x[c("a", "c")]
+```
+```{r}
+x[-which(names(x) == "a")]
+names(x) == "a"
+which(names(x) == "a")
+x[-which(names(x) %in% c("a", "c"))]
+```
+# Challenge 2
+```{r}
+x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
+names(x) <- c('a', 'b', 'c', 'd', 'e')
+print(x)
+```
+```{r}
+x[-which(names(x) == "g")]
+```
+
+if there are no TRUE values passed to which, an empty vector is returned integer() is an empty vector
+
+```{r}
+names(x) <- c('a', 'a', 'a')
+x['a']
+x[which(names(x) == 'a')]
+```
+```{r}
+names(x) == c('a', 'c', 'e')
+```
+```{r}
+x[c(TRUE, TRUE, FALSE, FALSE)]
+x[c(TRUE, FALSE)]
+x[x > 7]
+```
+# Challenge 3
+```{r}
+x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
+names(x) <- c('a', 'b', 'c', 'd', 'e')
+print(x)
+
+x_subset <- x[x<7 & x>4]
+print(x_subset)
+```
+```{r}
+f <- factor(c("a", "a", "b", "c", "c", "d"))
+f[f == "a"]
+```
+```{r}
+f[f %in% c("b", "c")]
+f[1:3]
+f[-3]
+```
+```{r}
+set.seed(1)
+m <- matrix(rnorm(6*4), ncol=4, nrow=6)
+m[3:4, c(3,1)]
+```
+```{r}
+m[, c(3,4)]
+```
+```{r}
+m[3,]
+m[3, , drop=FALSE]
+```
+```{r}
+m[5]
+```
+```{r}
+matrix(1:6, nrow=2, ncol=3)
+```
+```{r}
+matrix(1:6, nrow=2, ncol=3, byrow=TRUE)
+```
+# Challenge 4
+```{r}
+m <- matrix(1:18, nrow=3, ncol=6)
+print(m)
+```
+m[2,c(4,5)] will extract the values 11 and 14.
+```{r}
+xlist <- list(a = "Software Carpentry", b = 1:10, data = head(iris))
+xlist[1]
+```
+```{r}
+xlist[1:2]
+```
+```{r}
+xlist[[1]]
+```
+```{r}
+xlist[["a"]]
+```
+```{r}
+xlist$data
+```
+# Challenge 5
+```{r}
+xlist <- list(a = "Software Carpentry", b = 1:10, data = head(iris))
+xlist[[2]][2]
+```
+# Challenge 6
+```{r}
+mod <- aov(pop ~ lifeExp, data=gapminder)
+attributes(mod)
+mod$df.residual
+```
+```{r}
+head(gapminder[3])
+```
+```{r}
+head(gapminder[["lifeExp"]])
+```
+```{r}
+head(gapminder$year)
+```
+```{r}
+gapminder[1:3,]
+```
+```{r}
+gapminder[3,]
+```
+# Challenge 7
+```{r}
+gapminder[gapminder$year == 1957,]
+```
+```{r}
+gapminder[,-c(1:4)]
+```
+```{r}
+gapminder[gapminder$lifeExp > 80,]
+```
+```{r}
+gapminder[1, c(4, 5)]
+```
+```{r}
+gapminder[gapminder$year == 2002 | gapminder$year == 2007,]
+gapminder[gapminder$year %in% c(2002, 2007),]
+```
+# Challenge 8
+gapminder is a data frame so it needs to be subsetted on 2 dimensions. gapminder[1:20, ] subsets the data to give the first 20 rows and all columns.
+```{r}
+gapminder_small <- gapminder[c(1:9, 19:23),]
+```
+# 3. Creating Publication Quality Graphics
+```{r}
+library("ggplot2")
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point()
+```
+# Challenge 1
+```{r}
+ggplot(data = gapminder, aes(x = year, y = lifeExp)) + geom_point()
+```
+# Challenge 2
+```{r}
+ggplot(data = gapminder, aes(x = year, y = lifeExp, color=continent)) +
+  geom_point()
+```
+```{r}
+ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) +
+  geom_line()
+```
+```{r}
+ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) +
+  geom_line() + geom_point()
+```
+```{r}
+ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) +
+  geom_line(aes(color=continent)) + geom_point()
+```
+# Challenge 3
+The lines get drawn over the points.
+```{r}
+ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) +
+ geom_point() + geom_line(aes(color=continent))
+```
+```{r}
+ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) +
+ geom_point() + geom_line(aes(color=continent))
+```
+```{r}
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color=continent)) +
+  geom_point()
+```
+```{r}
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point(alpha = 0.5) + scale_x_log10()
+```
+```{r}
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point() + scale_x_log10() + geom_smooth(method="lm")
+```
+```{r}
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point() + scale_x_log10() + geom_smooth(method="lm", size=1.5)
+```
+# Challenge 4a
+```{r}
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
+ geom_point(size=3, color="orange") + scale_x_log10() +
+ geom_smooth(method="lm", size=1.5)
+```
+# Challenge 4b
+```{r}
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +
+geom_point(size=3, pch=17) + scale_x_log10() +
+geom_smooth(method="lm", size=1.5)
+```
+```{r}
+starts.with <- substr(gapminder$country, start = 1, stop = 1)
+az.countries <- gapminder[starts.with %in% c("A", "Z"), ]
+ggplot(data = az.countries, aes(x = year, y = lifeExp, color=continent)) +
+  geom_line() + facet_wrap( ~ country)
+```
+```{r}
+ggplot(data = az.countries, aes(x = year, y = lifeExp, color=continent)) +
+  geom_line() + facet_wrap( ~ country) +
+  xlab("Year") + ylab("Life expectancy") + ggtitle("Figure 1") +
+  scale_colour_discrete(name="Continent") +
+  theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())
+```
+# Challenge 5
+```{r}
+ggplot(data = gapminder, aes(x = gdpPercap, fill=continent)) +
+ geom_density(alpha=0.6) + facet_wrap( ~ year) + scale_x_log10()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
